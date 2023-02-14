@@ -1,2 +1,2 @@
 import pygame
-print("game")
+print("Retaining wall.")
