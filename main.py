@@ -10,6 +10,21 @@ application.title("Ceasar Cypher Simulator")
 application.geometry("600x400")
 
 
+#Functions
+
+def UnencryptAI():
+    print("Placeholder")
+
+
+#Button Press Detection
+def EncodeFunction():
+    print("Encode has been pressed.")
+def DecodeFunction():
+    print("Decode has been pressed.")
+def UnencrytFunction():
+    print("Unencryt has been pressed.")
+
+
 #Make GUI
 
 Title = Label(application, text="Welcome to Epic Ceasar Cypher Simulator 😎", font="Arial 16")
@@ -24,9 +39,9 @@ Spacer2 = Label(application, width=16)
 Spacer3 = Label(application, width=16)
 Spacer4 = Label(application, width=2)
 Spacer5 = Label(application, width=2)
-Encode = Button(application, text="Encode", font="Arial 10")
-Decode = Button(application, text="Decode", font="Arial 10")
-Unencryt = Button(application, text="Unencrypt", font="Arial 10")
+Encode = Button(application, text="Encode", font="Arial 10", command=EncodeFunction)
+Decode = Button(application, text="Decode", font="Arial 10", command=DecodeFunction)
+Unencryt = Button(application, text="Unencrypt", font="Arial 10", command=UnencrytFunction)
 
 Title.pack(side=TOP)
 
@@ -37,10 +52,10 @@ Input.pack(side=BOTTOM)
 Label1.pack(side=BOTTOM)
 
 Spacer2.pack(side=LEFT)
-Spacer3.pack(side=RIGHT)
-Label2.pack(side=LEFT, anchor=W)
-Offset.pack(side=LEFT, anchor=W)
+Label2.pack(side=LEFT)
+Offset.pack(side=LEFT)
 
+Spacer3.pack(side=RIGHT)
 Unencryt.pack(side=RIGHT)
 Spacer4.pack(side=RIGHT)
 Decode.pack(side=RIGHT)
@@ -49,3 +64,4 @@ Encode.pack(side=RIGHT)
 
 
 application.mainloop()
+
