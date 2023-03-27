@@ -1,3 +1,2 @@
-This is for ENGLISH ONLY
-
-Remember to like and subscribe
+This is for ENGLISH LANGUAGE ONLY
+Tortieal: youtueb

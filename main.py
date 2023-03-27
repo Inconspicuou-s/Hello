@@ -15,14 +15,24 @@ application.geometry("600x400")
 def UnencryptAI():
     print("Placeholder")
 
+def Write(text):
+    Output.delete("1.0", "end")
+    Output.insert(tk.END, text)
+
+def ButtonPressed(Button):
+    Change = Offset.get()
+    Text = Input.get("1.0", "end")
+    Write((Button, Change, Text))
+
+
 
 #Button Press Detection
 def EncodeFunction():
-    print("Encode has been pressed.")
+    ButtonPressed("Encode")
 def DecodeFunction():
-    print("Decode has been pressed.")
+    ButtonPressed("Decode")
 def UnencrytFunction():
-    print("Unencryt has been pressed.")
+    ButtonPressed("Unencrypt")
 
 
 #Make GUI
