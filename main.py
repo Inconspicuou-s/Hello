@@ -12,6 +12,15 @@ application.geometry("600x400")
 
 #Functions
 
+def Cypher(Words, Modifier, Preset):
+    try:
+        int(Modifier)
+    except:
+        return("ERROR: OFFSET NOT NUMBER")
+    Letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    return("Null.")
+
+
 def UnencryptAI():
     print("Placeholder")
 
@@ -22,7 +31,11 @@ def Write(text):
 def ButtonPressed(Button):
     Change = Offset.get()
     Text = Input.get("1.0", "end")
-    Write((Button, Change, Text))
+    if Button == "Unencrypt":
+        Write("No AI Detected.")
+    else:
+        Write(Cypher(Text, Change, Button))
+
 
 
 
