@@ -13,11 +13,52 @@ application.geometry("600x400")
 #Functions
 
 def Cypher(Words, Modifier, Preset):
+    Nothing = True
+    for i in Modifier:
+        if i != " ":
+            Nothing = False
+    if Nothing:
+        return("ERROR: NO OFFSET INPUTTED")
+
     try:
-        int(Modifier)
+        Modifier = int(Modifier)
     except:
         return("ERROR: OFFSET NOT NUMBER")
-    Letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    Letters = "abcdefghijklmnopqrstuvwxyz"
+    Cyphered = ""
+    for x in Words:
+        if x.isalpha():
+            if x.isupper():
+                Letters = Letters.upper()
+            else:
+                Letters = Letters.lower()
+            Position = 0
+            for i in Letters:
+                if i == x:
+                    break
+                else:
+                    Position = Position + 1
+
+            if Preset == "Encode":
+                Position = Position + Modifier
+                while Position > 25:
+                    Position = Position - 26
+
+            elif Preset == "Decode":
+                Position = Position - Modifier
+                while Position < 0:
+                    Position = Position + 26
+
+
+            Cyphered = Cyphered + Letters[Position]
+
+        else:
+            Cyphered = Cyphered + x
+
+    print(Cyphered)
+    return(Cyphered)
+
+
     return("Null.")
 
 
@@ -32,7 +73,7 @@ def ButtonPressed(Button):
     Change = Offset.get()
     Text = Input.get("1.0", "end")
     if Button == "Unencrypt":
-        Write("No AI Detected.")
+        Write("ERROR: IT IS NOT ALLOWED")
     else:
         Write(Cypher(Text, Change, Button))
 
