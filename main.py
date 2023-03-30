@@ -41,13 +41,11 @@ def Cypher(Words, Modifier, Preset):
 
             if Preset == "Encode":
                 Position = Position + Modifier
-                while Position > 25:
-                    Position = Position - 26
+                Position = Position % 26
 
             elif Preset == "Decode":
                 Position = Position - Modifier
-                while Position < 0:
-                    Position = Position + 26
+                Position = Position % 26
 
 
             Cyphered = Cyphered + Letters[Position]
@@ -129,3 +127,4 @@ Encode.pack(side=RIGHT)
 
 application.mainloop()
 
+#
