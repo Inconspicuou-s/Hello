@@ -1,13 +1,21 @@
 import tkinter as tk
 from tkinter import *
 
+class CypherProgame(tk.Tk):
+    def __init__(self):
+        super().__init__()
+
+        self.title("Ceasar Cypher Simulator")
+        self.geometry("600x400")
+        self.coolepic = "a"
+
+
 
 #This does somthing
-application = tk.Tk()
-
+application = CypherProgame()
+print(application.coolepic)
 #Make the name and size
-application.title("Ceasar Cypher Simulator")
-application.geometry("600x400")
+
 
 
 #Functions
