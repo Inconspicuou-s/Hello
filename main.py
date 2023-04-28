@@ -7,14 +7,11 @@ class CypherProgame(tk.Tk):
 
         self.title("Ceasar Cypher Simulator")
         self.geometry("600x400")
-        self.coolepic = "a"
 
 
 
 #This does somthing
 application = CypherProgame()
-print(application.coolepic)
-#Make the name and size
 
 
 
@@ -68,8 +65,12 @@ def Cypher(Words, Modifier, Preset):
     return("Null.")
 
 
-def UnencryptAI():
-    print("Placeholder")
+def UnencryptAI(Words):
+    #so what i have to do is make somthing to get a value of english words to not english words
+    with open('words.txt', 'r') as file:
+        lines = file.readlines()
+        lines = [line.strip() for line in lines]
+        print(lines)
 
 def Write(text):
     Output.delete("1.0", "end")
@@ -79,7 +80,7 @@ def ButtonPressed(Button):
     Change = Offset.get()
     Text = Input.get("1.0", "end")
     if Button == "Unencrypt":
-        Write("ERROR: IT IS NOT ALLOWED")
+        Write(UnencryptAI(Text))
     else:
         Write(Cypher(Text, Change, Button))
 
