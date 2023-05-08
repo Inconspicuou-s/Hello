@@ -1,6 +1,6 @@
 import tkinter as tk
 from tkinter import *
-
+import re
 class CypherProgame(tk.Tk):
     def __init__(self):
         super().__init__()
@@ -46,11 +46,9 @@ def Cypher(Words, Modifier, Preset):
 
             if Preset == "Encode":
                 Position = Position + Modifier
-                Position = Position % 26
-
             elif Preset == "Decode":
                 Position = Position - Modifier
-                Position = Position % 26
+            Position = Position % 26
 
 
             Cyphered = Cyphered + Letters[Position]
@@ -70,7 +68,31 @@ def UnencryptAI(Words):
     with open('words.txt', 'r') as file:
         lines = file.readlines()
         lines = [line.strip() for line in lines]
-        print(lines)
+
+    Text = Input.get("1.0", "end")
+    Text = re.split(" |\n|\s", Text)
+    #Text = [line.strip() for line in Text]
+    print(Text)
+
+    Exit = False
+    while not Exit:
+        for i in Text:
+            if i == "":
+                Text.remove("")
+        print(Text)
+        Repeat = False
+        for i in Text:
+            if i == "":
+                Repeat = True
+        if not Repeat:
+            Exit = True
+
+    print(Text)
+    if Text[0] == "":
+        return("ERROR: NO TEXT TO UNENCRYPT")
+
+    return(Text)
+
 
 def Write(text):
     Output.delete("1.0", "end")
