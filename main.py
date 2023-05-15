@@ -87,10 +87,9 @@ def UnencryptAI(Words):
         if not Repeat:
             Exit = True
 
-    print(Text)
-    if Text[0] == "":
+    print("This is text OMG:",Text)
+    if not Text:
         return("ERROR: NO TEXT TO UNENCRYPT")
-
     return(Text)
 
 
@@ -158,4 +157,4 @@ Encode.pack(side=RIGHT)
 
 application.mainloop()
 
-#
+#Ocvo rvn ijo v admz ydnodibpdnczm, ocvo rvn v agvhzocmjrzm, gjg.
