@@ -184,4 +184,4 @@ Encode.pack(side=RIGHT)
 
 application.mainloop()
 
-#Ocvo rvn ijo v admz ydnodibpdnczm, ocvo rvn v agvhzocmjrzm, gjg.
+#Ocvo rvn ijo v admz ydnodibpdnczm, ocvo rvn v agvhzocmjrzm, gjg..
