@@ -1,6 +1,13 @@
 import tkinter as tk
 from tkinter import *
 import re
+import openai
+
+
+openai.api_key = open("key.txt", "r").read()
+#Chat GPT did this for me
+
+
 class CypherProgame(tk.Tk):
     def __init__(self):
         super().__init__()
@@ -63,7 +70,7 @@ def Cypher(Words, Modifier, Preset):
     return("Null.")
 
 
-def UnencryptAI(Words):
+def UnencryptAlgorythm(Words):
     #so what i have to do is make somthing to get a value of english words to not english words
     with open('words.txt', 'r') as file:
         lines = file.readlines()
@@ -93,6 +100,17 @@ def UnencryptAI(Words):
     return(Text)
 
 
+def UnencryptAI(Words):
+    response = openai.ChatCompletion.create(
+        model="gpt-3.5-turbo",
+        messages=[
+            {"role": "user", "content": "The following text has been cyphered in a ceasar cypher, can you decypher it for me: " + Words},
+        ]
+    )
+    assistant_reply = response['choices'][0]['message']['content']
+    return(assistant_reply)
+
+
 def Write(text):
     Output.delete("1.0", "end")
     Output.insert(tk.END, text)
@@ -100,8 +118,10 @@ def Write(text):
 def ButtonPressed(Button):
     Change = Offset.get()
     Text = Input.get("1.0", "end")
-    if Button == "Unencrypt":
+    if Button == "AI":
         Write(UnencryptAI(Text))
+    elif Button == "Algorythm":
+        Write(UnencryptAlgorythm(Text))
     else:
         Write(Cypher(Text, Change, Button))
 
@@ -113,8 +133,10 @@ def EncodeFunction():
     ButtonPressed("Encode")
 def DecodeFunction():
     ButtonPressed("Decode")
-def UnencrytFunction():
-    ButtonPressed("Unencrypt")
+def AlgorythmFunction():
+    ButtonPressed("Algorythm")
+def AIFunction():
+    ButtonPressed("AI")
 
 
 #Make GUI
@@ -127,13 +149,15 @@ Offset = Entry(application, width=4)
 Label3 = Label(application, text="Output:", font="Arial 10")
 Output = Text(application, height=8, width=70)
 Spacer1 = Label(application)
-Spacer2 = Label(application, width=16)
-Spacer3 = Label(application, width=16)
+Spacer2 = Label(application, width=3)
+Spacer3 = Label(application, width=3)
 Spacer4 = Label(application, width=2)
 Spacer5 = Label(application, width=2)
+Spacer6 = Label(application, width=2)
 Encode = Button(application, text="Encode", font="Arial 10", command=EncodeFunction)
 Decode = Button(application, text="Decode", font="Arial 10", command=DecodeFunction)
-Unencryt = Button(application, text="Unencrypt", font="Arial 10", command=UnencrytFunction)
+Unencryt = Button(application, text="Algorythm Unencrypt", font="Arial 10", command=AlgorythmFunction())
+Broken = Button(application, text="AI Unencrypt", font="Arial 10", command=AIFunction)
 
 Title.pack(side=TOP)
 
@@ -148,11 +172,14 @@ Label2.pack(side=LEFT)
 Offset.pack(side=LEFT)
 
 Spacer3.pack(side=RIGHT)
-Unencryt.pack(side=RIGHT)
+Broken.pack(side=RIGHT)
 Spacer4.pack(side=RIGHT)
-Decode.pack(side=RIGHT)
+Unencryt.pack(side=RIGHT)
 Spacer5.pack(side=RIGHT)
+Decode.pack(side=RIGHT)
+Spacer6.pack(side=RIGHT)
 Encode.pack(side=RIGHT)
+
 
 
 application.mainloop()
