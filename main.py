@@ -67,9 +67,6 @@ def Cypher(Words, Modifier, Preset):
     return(Cyphered)
 
 
-    return("Null.")
-
-
 def UnencryptAlgorythm(Words):
     #so what i have to do is make somthing to get a value of english words to not english words
     with open('words.txt', 'r') as file:
@@ -101,10 +98,11 @@ def UnencryptAlgorythm(Words):
 
 
 def UnencryptAI(Words):
+    #ChatGPT partually wrote the following 7 lines of code.
     response = openai.ChatCompletion.create(
         model="gpt-3.5-turbo",
         messages=[
-            {"role": "user", "content": "The following text has been cyphered in a ceasar cypher, can you decypher it for me: " + Words},
+            {"role": "user", "content": "The following text has been cyphered in a ceasar cypher, can you decypher it for me?: " + Words},
         ]
     )
     assistant_reply = response['choices'][0]['message']['content']
@@ -184,4 +182,4 @@ Encode.pack(side=RIGHT)
 
 application.mainloop()
 
-#Ocvo rvn ijo v admz ydnodibpdnczm, ocvo rvn v agvhzocmjrzm, gjg..
+#Ocvo rvn ijo v admz ydnodibpdnczm, ocvo rvn v agvhzocmjrzm, gjg.
