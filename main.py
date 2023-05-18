@@ -2,7 +2,7 @@ import tkinter as tk
 from tkinter import *
 import re
 import openai
-
+import time
 
 openai.api_key = open("key.txt", "r").read()
 #Chat GPT did this for me
@@ -63,7 +63,7 @@ def Cypher(Words, Modifier, Preset):
         else:
             Cyphered = Cyphered + x
 
-    print(Cyphered)
+
     return(Cyphered)
 
 
@@ -75,15 +75,25 @@ def UnencryptAlgorythm(Words):
 
     Text = Input.get("1.0", "end")
     Text = re.split(" |\n|\s", Text)
-    #Text = [line.strip() for line in Text]
-    print(Text)
+
+    New = []
+    for i in Text:
+        if not i.isalpha():
+            word = ""
+            for x in i:
+                if x.isalpha():
+                    word = word + x
+            New.append(word.lower())
+        else:
+            New.append(i.lower())
+    Text = New
+    # [;jfad6e
 
     Exit = False
     while not Exit:
         for i in Text:
             if i == "":
                 Text.remove("")
-        print(Text)
         Repeat = False
         for i in Text:
             if i == "":
@@ -91,10 +101,34 @@ def UnencryptAlgorythm(Words):
         if not Repeat:
             Exit = True
 
-    print("This is text OMG:",Text)
+
     if not Text:
         return("ERROR: NO TEXT TO UNENCRYPT")
-    return(Text)
+    #return(Text)
+
+
+    Results = []
+    for j in range(0, 26):
+        Result = 0
+        for i in Text:
+            Decyphered = Cypher(i, str(j), "Decode")
+            Data = [False]
+            for x in lines:
+
+                if Decyphered == x:
+                    Data = [True, Decyphered, j]
+            if Data[0]:
+                Result = Result + 1
+        Results.append(Result)
+
+
+    Highest = 0
+    for j in range(0, 26):
+        if Results[j] > Highest:
+            Highest = Results[j]
+            Change = j
+
+    return("The text has been deciphered with a key of " + str(Change) + " and an accuracy of " + str(round(Highest / len(Text) * 100)) + "%.\n"+ Cypher(Words, str(Change), "Decode"))
 
 
 def UnencryptAI(Words):
@@ -154,7 +188,7 @@ Spacer5 = Label(application, width=2)
 Spacer6 = Label(application, width=2)
 Encode = Button(application, text="Encode", font="Arial 10", command=EncodeFunction)
 Decode = Button(application, text="Decode", font="Arial 10", command=DecodeFunction)
-Unencryt = Button(application, text="Algorythm Unencrypt", font="Arial 10", command=AlgorythmFunction())
+Unencryt = Button(application, text="Algorythm Unencrypt", font="Arial 10", command=AlgorythmFunction)
 Broken = Button(application, text="AI Unencrypt", font="Arial 10", command=AIFunction)
 
 Title.pack(side=TOP)
