@@ -20,7 +20,6 @@ class CypherProgame(tk.Tk):
 application = CypherProgame()
 
 
-
 #Functions
 
 def Cypher(Words, Modifier, Preset):
@@ -74,8 +73,15 @@ def UnencryptAlgorythm(Words):
     Text = Input.get("1.0", "end")
     Text = re.split(" |\n|\s", Text)
 
-
     New = []
+    for x in range(26):
+        New.append([])
+    Alphabet = "abcdefghijklmnopqrstuvwxyz"
+    for x in lines:
+        New[Alphabet.find(x[0])].append(x)
+    lines = New
+
+
     for i in Text:
         if not i.isalpha():
             word = ""
@@ -86,7 +92,6 @@ def UnencryptAlgorythm(Words):
         else:
             New.append(i.lower())
     Text = New
-    # [;jfad6e
 
     Exit = False
     while not Exit:
