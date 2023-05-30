@@ -5,7 +5,6 @@ import openai
 import time
 
 openai.api_key = open("key.txt", "r").read()
-#Chat GPT did this for me
 
 
 class CypherProgame(tk.Tk):
@@ -68,13 +67,13 @@ def Cypher(Words, Modifier, Preset):
 
 
 def UnencryptAlgorythm(Words):
-    #so what i have to do is make somthing to get a value of english words to not english words
     with open('words.txt', 'r') as file:
         lines = file.readlines()
         lines = [line.strip() for line in lines]
 
     Text = Input.get("1.0", "end")
     Text = re.split(" |\n|\s", Text)
+
 
     New = []
     for i in Text:
