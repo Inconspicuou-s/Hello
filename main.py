@@ -65,13 +65,12 @@ def Cypher(Words, Modifier, Preset):
     return(Cyphered)
 
 
-def UnencryptAlgorythm(Words):
+def UnencryptAlgorythm():
     with open('words.txt', 'r') as file:
         lines = file.readlines()
         lines = [line.strip() for line in lines]
+    #reads all words and puts them in list lines
 
-    Text = Input.get("1.0", "end")
-    Text = re.split(" |\n|\s", Text)
 
     New = []
     for x in range(26):
@@ -80,8 +79,13 @@ def UnencryptAlgorythm(Words):
     for x in lines:
         New[Alphabet.find(x[0])].append(x)
     lines = New
+    #Turns all words into lists alphabetically
 
+    Text = Input.get("1.0", "end")
+    Text = re.split(" |\n|\s", Text)
+    # Gets text in textbox
 
+    New = []
     for i in Text:
         if not i.isalpha():
             word = ""
@@ -92,6 +96,7 @@ def UnencryptAlgorythm(Words):
         else:
             New.append(i.lower())
     Text = New
+
 
     Exit = False
     while not Exit:
@@ -104,11 +109,11 @@ def UnencryptAlgorythm(Words):
                 Repeat = True
         if not Repeat:
             Exit = True
+    #Turns words inputted into a list
 
 
     if not Text:
         return("ERROR: NO TEXT TO UNENCRYPT")
-    #return(Text)
 
 
     Results = []
@@ -116,21 +121,29 @@ def UnencryptAlgorythm(Words):
         Result = 0
         for i in Text:
             Decyphered = Cypher(i, str(j), "Decode")
-            Data = [False]
-            for x in lines:
 
+            Data = [False]
+            Position = Alphabet.find(Decyphered[0])
+            Words = lines[Position]
+            for x in Words:
                 if Decyphered == x:
                     Data = [True, Decyphered, j]
             if Data[0]:
                 Result = Result + 1
         Results.append(Result)
-
+    print(Results)
 
     Highest = 0
+    Change = 0
     for j in range(0, 26):
         if Results[j] > Highest:
             Highest = Results[j]
             Change = j
+
+
+
+    Words = Input.get("1.0", "end")
+    # Gets text in textbox
 
     return("The text has been deciphered with a key of " + str(Change) + " and an accuracy of " + str(round(Highest / len(Text) * 100)) + "%.\n"+ Cypher(Words, str(Change), "Decode"))
 
@@ -157,7 +170,7 @@ def ButtonPressed(Button):
     if Button == "AI":
         Write(UnencryptAI(Text))
     elif Button == "Algorythm":
-        Write(UnencryptAlgorythm(Text))
+        Write(UnencryptAlgorythm())
     else:
         Write(Cypher(Text, Change, Button))
 
