@@ -2,7 +2,6 @@ import tkinter as tk
 from tkinter import *
 import re
 import openai
-import time
 
 openai.api_key = open("key.txt", "r").read()
 
@@ -15,8 +14,7 @@ class CypherProgame(tk.Tk):
         self.geometry("600x400")
 
 
-
-#This does somthing
+# This does somthing
 application = CypherProgame()
 
 
@@ -146,18 +144,21 @@ def UnencryptAlgorythm():
     # Gets text in textbox
 
     return("The text has been deciphered with a key of " + str(Change) + " and an accuracy of " + str(round(Highest / len(Text) * 100)) + "%.\n"+ Cypher(Words, str(Change), "Decode"))
-
+#tier 13 marble run
 
 def UnencryptAI(Words):
-    #ChatGPT partually wrote the following 7 lines of code.
-    response = openai.ChatCompletion.create(
-        model="gpt-3.5-turbo",
-        messages=[
-            {"role": "user", "content": "The following text has been cyphered in a ceasar cypher, can you decypher it for me?: " + Words},
-        ]
-    )
-    assistant_reply = response['choices'][0]['message']['content']
-    return(assistant_reply)
+    try:
+        #ChatGPT partually wrote the following 7 lines of code.
+        response = openai.ChatCompletion.create(
+            model="gpt-3.5-turbo",
+            messages=[
+                {"role": "user", "content": "The following text has been cyphered in a ceasar cypher, can you decypher it for me?: " + Words},
+            ]
+        )
+        assistant_reply = response['choices'][0]['message']['content']
+        return(assistant_reply)
+    except:
+        return("ERROR: THE AI RAN OUT")
 
 
 def Write(text):
@@ -232,5 +233,3 @@ Encode.pack(side=RIGHT)
 
 
 application.mainloop()
-
-#Ocvo rvn ijo v admz ydnodibpdnczm, ocvo rvn v agvhzocmjrzm, gjg.
