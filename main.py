@@ -139,7 +139,6 @@ def UnencryptAlgorythm():
             Change = j
 
 
-
     Words = Input.get("1.0", "end")
     # Gets text in textbox
 
