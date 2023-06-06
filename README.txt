@@ -6,3 +6,5 @@ Credits:
 OpenAI: OpenAI API
 Words for Unencryption thing: https://github.com/dwyl/english-words
 Everything else was me (Aidan Belch)
+
+The project can be found here: https://github.com/Inconspicuou-s/Hello
